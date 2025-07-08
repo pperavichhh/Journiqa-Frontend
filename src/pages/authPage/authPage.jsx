@@ -32,6 +32,9 @@ export default function AuthScreen() {
             {/* Header Section */}
             <header className="auth-header">
               <img src={bgImage} alt="Background" className="auth-header-image" />
+              <button className="auth-header-back-button">
+                <IoIosArrowBack />
+              </button>
               <div className="avatar-container">
                 <div className="avatar">
                   <img src={avatarImage} alt="Avatar" className="avatar-image" />
@@ -93,7 +96,7 @@ export default function AuthScreen() {
                     <input type="checkbox" />
                     <span>Remember Me</span>
                   </label>
-                  <a href="#" className="forgot-password-link">Forgot Password?</a>
+                  <a href="/forgot-password" className="forgot-password-link">Forgot Password?</a>
                 </div>
 
                 <button type="submit" className="submit-button">

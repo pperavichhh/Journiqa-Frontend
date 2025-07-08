@@ -1,0 +1,155 @@
+/* === Base Landing Page Styles === */
+.landing-container {
+  position: relative;
+  width: 100%;
+  height: 100vh;
+  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+  overflow: hidden;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  color: white;
+}
+
+.landing-bg {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  z-index: -2;
+}
+
+.landing-overlay {
+  position: absolute;
+  inset: 0;
+  background: rgba(0, 0, 0, 0.5);
+  z-index: -1;
+}
+
+.landing-content {
+  text-align: center;
+  padding: 0 2rem;
+  z-index: 2;
+}
+
+.landing-title {
+  font-size: 3rem;
+  font-weight: 700;
+  margin-bottom: 1rem;
+  color: white;
+}
+
+.landing-subtitle {
+  font-size: 1.25rem;
+  color: #d1d5db;
+  margin-bottom: 2rem;
+}
+
+.landing-btn {
+  font-size: 1rem;
+  padding: 0.75rem 2rem;
+  background-color: #facc15; /* Yellow */
+  color: #1f2937;
+  font-weight: 600;
+  border-radius: 9999px;
+  border: none;
+  cursor: pointer;
+  transition: background-color 0.3s, transform 0.2s;
+}
+
+.landing-btn:hover {
+  background-color: #eab308; /* Darker Yellow */
+  transform: scale(1.05);
+}
+
+/* === Responsive Scaling === */
+@media (min-width: 768px) {
+  .landing-title {
+    font-size: 4rem;
+  }
+  .landing-subtitle {
+    font-size: 1.5rem;
+  }
+  .landing-btn {
+    font-size: 1.125rem;
+    padding: 1rem 2.5rem;
+  }
+}
+
+/* === STEP 1: Spinner Loader === */
+.circle-loader {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  width: 48px;
+  height: 48px;
+  border: 4px solid rgba(255, 255, 255, 0.2);
+  border-top: 4px solid #facc15;
+  border-radius: 50%;
+  transform: translate(-50%, -50%);
+  animation: spin 0.8s linear infinite;
+  z-index: 10;
+}
+
+@keyframes spin {
+  0% { transform: translate(-50%, -50%) rotate(0deg); }
+  100% { transform: translate(-50%, -50%) rotate(360deg); }
+}
+
+/* === STEP 2: Expanding Circle === */
+.circle-expand {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  width: 10px;
+  height: 10px;
+  background-color: #facc15;
+  border-radius: 50%;
+  transform: translate(-50%, -50%);
+  animation: expandCircle 0.8s ease-in forwards;
+  z-index: 9;
+}
+
+@keyframes expandCircle {
+  0% {
+    width: 10px;
+    height: 10px;
+    opacity: 0.7;
+  }
+  100% {
+    width: 2000px;
+    height: 2000px;
+    opacity: 1;
+  }
+}
+
+/* === STEP 3: Logo Reveal === */
+.logo-reveal {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  z-index: 11;
+  text-align: center;
+  animation: fadeIn 0.5s ease-in;
+}
+
+.logo-avatar {
+  width: 100px;
+  height: 100px;
+  border-radius: 50%;
+  margin-bottom: 1rem;
+}
+
+.logo-text {
+  font-size: 2rem;
+  font-weight: bold;
+  color: #1f2937;
+}
+
+/* Fade effect */
+@keyframes fadeIn {
+  from { opacity: 0; transform: translate(-50%, -50%) scale(0.9); }
+  to { opacity: 1; transform: translate(-50%, -50%) scale(1); }
+}
