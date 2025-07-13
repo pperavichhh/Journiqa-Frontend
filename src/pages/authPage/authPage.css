@@ -291,7 +291,7 @@ body {
 }
 
 /* --- Form Panel (Desktop specific wrapper, will contain the form-container on desktop) --- */
-.form-panel {
+.form-panel { 
   display: flex;
   align-items: center;
   justify-content: center;
