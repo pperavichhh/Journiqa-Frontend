@@ -125,32 +125,49 @@ body {
 }
 .input-group {
   position: relative;
-}
-.input-icon {
-  position: absolute;
-  top: 0;
-  bottom: 0;
-  left: 0;
   display: flex;
   align-items: center;
-  padding-left: 0.75rem;
-  color: #9ca3af;
-}
-.form-input {
-  width: 100%;
-  box-sizing: border-box;
-  padding-left: 2.5rem;
-  padding-right: 2.5rem;
-  padding-top: 0.75rem;
-  padding-bottom: 0.75rem;
   background-color: #f3f4f6;
-  border: 1px solid transparent;
+  padding: 0.5rem 1rem;         
   border-radius: 0.75rem;
+  border: 1px solid transparent;
+  gap: 0.5rem;
+  transition: box-shadow 0.3s;
+  box-sizing: border-box;
+}
+
+.input-group:focus-within {
+  box-shadow: 0 0 0 2px #facc15;
+}
+
+.input-icon {
+  color: #9ca3af;
+  font-size: 1rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.input-icon .icon {
+  width: 1rem;
+  height: 1rem;
+}
+
+.form-input {
+  flex: 1;
+  border: none;
+  background: transparent;
+  font-size: 0.875rem; 
+  color: #111827;
+  padding: 0.5rem 0; 
+}
+
+.form-input::placeholder {
+  color: #9ca3af;
 }
 
 .form-input:focus {
   outline: none;
-  box-shadow: 0 0 0 2px #facc15;
 }
 .password-toggle {
   position: absolute;
@@ -401,25 +418,32 @@ body {
 
 /* Inputs */
 .input-group {
-  position: relative;
-  width: 100%;
+  display: flex;
+  align-items: center;
+  background-color: #f3f4f6;
+  padding: 0.5rem 1rem;
+  border-radius: 0.75rem;
+  border: 1px solid transparent;
+  gap: 0.5rem; 
+  transition: box-shadow 0.3s;
+  box-sizing: border-box;
+}
+
+.input-group:focus-within {
+  box-shadow: 0 0 0 2px #facc15;
 }
 
 .form-input {
-  width: 100%;
-  padding: 0.75rem 1rem;
-  border-radius: 0.75rem;
-  border: 1px solid transparent;
-  background-color: #f3f4f6;
-  font-size: 1rem;
+  flex: 1;
+  border: none;
+  background: transparent;
+  font-size: 0.875rem;
   color: #111827;
-  box-sizing: border-box;
-  transition: box-shadow 0.3s;
+  padding: 0.375rem 0; 
 }
 
 .form-input:focus {
   outline: none;
-  box-shadow: 0 0 0 2px #facc15;
   border-color: transparent;
 }
 
