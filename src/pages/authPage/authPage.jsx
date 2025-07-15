@@ -1,5 +1,4 @@
-// src/components/authPage.jsx
-
+// src/pages/authPage/authPage.jsx
 import { useNavigate } from "react-router-dom";
 
 import React, { useState } from "react";
@@ -19,8 +18,23 @@ export default function AuthScreen() {
   const [isLogin, setIsLogin] = useState(true);
   const [showPassword, setShowPassword] = useState(false);
   const [showConfirmPassword, setShowConfirmPassword] = useState(false);
+  const [isLoading, setIsLoading] = useState(false);
 
-  const naviage = useNavigate();
+  const navigate = useNavigate();
+
+  // Handle form submission
+  const handleSubmit = async (e) => {
+    e.preventDefault();
+    setIsLoading(true);
+
+    // Simulate API call delay
+    setTimeout(() => {
+      setIsLoading(false);
+      // Navigate to dashboard after successful login/register
+      navigate('/dashboard');
+    }, 1500);
+  };
+
   return (
     <div className="page-container">
       {/* New: Wrapper สำหรับ Responsive Layout */}
@@ -38,7 +52,10 @@ export default function AuthScreen() {
                 alt="Background"
                 className="auth-header-image"
               />
-              <button className="auth-header-back-button" >
+              <button 
+                className="auth-header-back-button"
+                onClick={() => navigate('/')}
+              >
                 <IoIosArrowBack />
               </button>
               <div className="avatar-container">
@@ -69,7 +86,7 @@ export default function AuthScreen() {
                 </button>
               </div>
 
-              <form className="form">
+              <form className="form" onSubmit={handleSubmit}>
                 <div className="input-group">
                   <span className="input-icon">
                     <MdOutlineEmail />
@@ -78,6 +95,7 @@ export default function AuthScreen() {
                     type="email"
                     placeholder="Email Address"
                     className="form-input"
+                    required
                   />
                 </div>
 
@@ -89,6 +107,7 @@ export default function AuthScreen() {
                     type={showPassword ? "text" : "password"}
                     placeholder="Password"
                     className="form-input"
+                    required
                   />
                   <button
                     type="button"
@@ -108,6 +127,7 @@ export default function AuthScreen() {
                       type={showConfirmPassword ? "text" : "password"}
                       placeholder="Confirmed Password"
                       className="form-input"
+                      required
                     />
                     <button
                       type="button"
@@ -131,8 +151,18 @@ export default function AuthScreen() {
                   </a>
                 </div>
 
-                <button type="submit" className="submit-button">
-                  {isLogin ? "Sign In" : "Sign Up"}
+                <button 
+                  type="submit" 
+                  className={`submit-button ${isLoading ? 'loading' : ''}`}
+                  disabled={isLoading}
+                >
+                  {isLoading ? (
+                    <span className="loading-text">
+                      {isLogin ? "Signing In..." : "Creating Account..."}
+                    </span>
+                  ) : (
+                    isLogin ? "Sign In" : "Sign Up"
+                  )}
                 </button>
               </form>
 
@@ -150,13 +180,13 @@ export default function AuthScreen() {
               </div>
 
               <div className="social-login-container">
-                <button className="social-button">
+                <button className="social-button" onClick={() => navigate('/dashboard')}>
                   <FcGoogle size={22} />
                 </button>
-                <button className="social-button">
+                <button className="social-button" onClick={() => navigate('/dashboard')}>
                   <FaApple size={22} />
                 </button>
-                <button className="social-button">
+                <button className="social-button" onClick={() => navigate('/dashboard')}>
                   <FaFacebook size={22} color="#1877F2" />
                 </button>
               </div>
