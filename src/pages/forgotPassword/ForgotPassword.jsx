@@ -1,12 +1,15 @@
-// ForgotPassword.jsx
+//src/pages/forgotPassword/ForgotPassword.jsx
+
 import React, { useState } from "react";
+import { useNavigate } from "react-router-dom";
 import "../authPage/authPage.css";
 import bgImage from "../../assets/bg-temple.png";
 import avatarImage from "../../assets/avatar.png";
 import { IoIosArrowBack } from "react-icons/io";
 
-export default function ForgotPassword({ onBackToSignIn }) {
+export default function ForgotPassword() {
   const [step, setStep] = useState(1);
+  const navigate = useNavigate();
 
   function handleNext() {
     setStep((prev) => prev + 1);
@@ -14,6 +17,10 @@ export default function ForgotPassword({ onBackToSignIn }) {
 
   function handleConfirm() {
     setStep(4); // success step
+  }
+
+  function handleBackToSignIn() {
+    navigate("/auth");
   }
 
   return (
@@ -33,7 +40,7 @@ export default function ForgotPassword({ onBackToSignIn }) {
                 className="auth-header-back-button"
                 onClick={() => {
                   if (step === 1) {
-                    onBackToSignIn();
+                    handleBackToSignIn();
                   } else {
                     setStep(step - 1);
                   }
@@ -55,7 +62,7 @@ export default function ForgotPassword({ onBackToSignIn }) {
 
             <main className="form-container">
               {step === 1 && (
-                <StepEmail onNext={handleNext} onBack={onBackToSignIn} />
+                <StepEmail onNext={handleNext} onBack={handleBackToSignIn} />
               )}
               {step === 2 && <StepVerify onNext={handleNext} />}
               {step === 3 && <StepNewPassword onConfirm={handleConfirm} />}
@@ -75,7 +82,7 @@ function StepEmail({ onNext, onBack }) {
     <div className="step-card">
       <h2 className="step-title">Forgot Password?</h2>
       <p className="step-desc">
-        Enter your email and we’ll send you a link to reset your password.
+        Enter your email and we'll send you a link to reset your password.
       </p>
 
       <div className="input-group">
@@ -145,7 +152,7 @@ function StepVerify({ onNext }) {
       </div>
 
       <div className="resend">
-        Didn’t receive the code? <button className="resend-link" type="button">Resend Code</button>
+        Didn't receive the code? <button className="resend-link" type="button">Resend Code</button>
       </div>
 
       <button className="submit-button" onClick={onNext}>Verify Code</button>
@@ -154,7 +161,6 @@ function StepVerify({ onNext }) {
     </div>
   );
 }
-
 
 function StepNewPassword({ onConfirm }) {
   const [showPassword, setShowPassword] = React.useState(false);
@@ -197,12 +203,14 @@ function StepNewPassword({ onConfirm }) {
 }
 
 function SuccessPopup() {
+  const navigate = useNavigate();
+
   React.useEffect(() => {
     const timer = setTimeout(() => {
-      window.location.href = "/auth"; // redirect to login page
+      navigate("/auth"); // Navigate to auth page using React Router
     }, 2000);
     return () => clearTimeout(timer);
-  }, []);
+  }, [navigate]);
 
   return (
     <div className="success-popup">
